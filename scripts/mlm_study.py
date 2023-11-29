@@ -164,7 +164,7 @@ if __name__ == '__main__':
     # with open(args.input_file, encoding="utf-8") as f:
     #     lines = [line for line in tqdm(f.read().splitlines()) if (len(line) > 0 and not line.isspace())]
     
-    # examples = tokenizer.batch_encode_plus(tqdm(lines), add_special_tokens=True, model_max_lengthgth=args.block_size)["input_ids"]
+    # examples = tokenizer.batch_encode_plus(tqdm(lines), add_special_tokens=True, model_max_length=args.block_size)["input_ids"]
     examples = []
     with open(args.input_file) as f:
         for ix, line in enumerate(f):
