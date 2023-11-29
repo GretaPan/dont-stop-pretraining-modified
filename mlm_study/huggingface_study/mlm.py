@@ -56,7 +56,7 @@ class LineByLineTextDataset(Dataset):
 
         with open(file_path, encoding="utf-8") as f:
             lines = [line for line in f.read().splitlines() if (len(line) > 0 and not line.isspace())]
-        self.examples = tokenizer.batch_encode_plus(lines, add_special_tokens=True, max_length=block_size)["input_ids"]
+        self.examples = tokenizer.batch_encode_plus(lines, add_special_tokens=True, model_max_lengthgth=block_size)["input_ids"]
 
     def __len__(self):
         return len(self.examples)
@@ -120,7 +120,7 @@ if __name__ == '__main__':
             labels = torch.tensor(labels)
             labels = labels.to(device)
         with torch.no_grad():
-            outputs = model(inputs, masked_lm_labels=labels)
+            outputs = model(inputs, labels=labels)
             lm_loss = outputs[0]
             eval_loss += lm_loss.mean().item()
         nb_eval_steps += 1

@@ -55,7 +55,7 @@ if __name__ == '__main__':
             if args.tokenizer in ['spacy', 'scispacy']:
                 tokens = list(map(str, tokenizer(line)))
             elif args.transformer:
-                tokens = tokenizer.batch_encode_plus([line], add_special_tokens=True, max_length=512)["input_ids"]
+                tokens = tokenizer.batch_encode_plus([line], add_special_tokens=True, model_max_lengthgth=512)["input_ids"]
             else:
                 tokens = tokenizer.encode(line).tokens
             if not args.transformer:
